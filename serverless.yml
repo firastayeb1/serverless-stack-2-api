@@ -13,7 +13,7 @@ custom:
   # commands. Or fallsback to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
-  tableName: ${self:custom.stage}-note
+  tableName: ${self:custom.stage}-notes
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
@@ -23,6 +23,10 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+  # Load our secret environment variables based on the current stage.
+  # Fallback to default if it is not in prod.
+  environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
+
 
 
 provider:
@@ -37,6 +41,8 @@ provider:
   # under process.env.
   environment:
     tableName: ${self:custom.tableName}
+      stripeSecretKey: ${self:custom.environment.stripeSecretKey}
+
 
   iamRoleStatements:
     - Effect: Allow
