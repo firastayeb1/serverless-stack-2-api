@@ -13,7 +13,7 @@ custom:
   # commands. Or fallsback to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
-  tableName: ${self:custom.stage}-notes
+  tableName: ${self:custom.stage}-note
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
@@ -29,7 +29,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: dev
-  region: us-east-1
+  region: eu-west-1
 
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
@@ -118,10 +118,15 @@ functions:
           cors: true
           authorizer: aws_iam
 
-# Create our resources with separate CloudFormation templates
-# Create our resources with separate CloudFormation templates
-# Create our resources with separate CloudFormation templates
-# Create our resources with separate CloudFormation templates
+  billing:
+    handler: billing.main
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
+
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
