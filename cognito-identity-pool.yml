@@ -166,7 +166,9 @@ Resources:
                   - Ref: ApiGatewayRestApi
                   - '/*' 
       UserPoolId:
-        Ref: CognitoUserPool
+        CognitoUserPool
+
+
   
 # Print out the Id of the Identity Pool that is created
 Outputs:
