@@ -125,7 +125,7 @@ functions:
     handler: getUnauth.main
     events:
       - http:
-          path: notes
+          path: notess
           method: get
           cors: true
           authorizer: aws_iam
