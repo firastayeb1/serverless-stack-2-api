@@ -13,7 +13,7 @@ custom:
   # commands. Or fallsback to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
-  tableName: ${self:custom.stage}-notes
+  tableName: ${self:custom.stage}-note
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
@@ -23,10 +23,6 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
-  # Load our secret environment variables based on the current stage.
-  # Fallback to default if it is not in prod.
-  environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
-
 
 
 provider:
@@ -37,13 +33,10 @@ provider:
 
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
-  # These environment variables are made available to our functions
+    # These environment variables are made available to our functions
   # under process.env.
   environment:
     tableName: ${self:custom.tableName}
-    stripeSecretKey: ${self:custom.environment.stripeSecretKey}
-
-
 
   iamRoleStatements:
     - Effect: Allow
@@ -125,15 +118,10 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  billing:
-    handler: billing.main
-    events:
-      - http:
-          path: billing
-          method: post
-          cors: true
-          authorizer: aws_iam
-
+# Create our resources with separate CloudFormation templates
+# Create our resources with separate CloudFormation templates
+# Create our resources with separate CloudFormation templates
+# Create our resources with separate CloudFormation templates
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
