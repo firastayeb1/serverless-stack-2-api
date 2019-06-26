@@ -10,9 +10,9 @@ export async function main(event, context) {
 
   try {
     const result = await dynamoDbLib.call("scan", params);
-    if (result.Item) {
+    if (result.Items) {
       // Return the retrieved item
-      return success(result.Item);
+      return success(result.Items);
     } else {
       return failure({ status: false, error: "Item not found." });
     }
