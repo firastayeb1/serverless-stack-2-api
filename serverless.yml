@@ -118,6 +118,18 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  getUnaut:
+    # Defines an HTTP API endpoint that calls the main function in delete.js
+    # - path: url path is /notes/{id}
+    # - method: DELETE request
+    handler: getUnauth.main
+    events:
+      - http:
+          path: notes
+          method: get
+          cors: true
+          authorizer: aws_iam
+
 # Create our resources with separate CloudFormation templates
 # Create our resources with separate CloudFormation templates
 # Create our resources with separate CloudFormation templates
