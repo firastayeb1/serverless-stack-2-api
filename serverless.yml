@@ -130,6 +130,16 @@ functions:
           cors: true
           authorizer: aws_iam
 
+    
+  changeGroup:
+    handler: changeGroup.main
+    events:
+      - http:
+          path: changeGroup
+          method: get
+          cors: true
+          authorizer: aws_iam
+
 # Create our resources with separate CloudFormation templates
 # Create our resources with separate CloudFormation templates
 # Create our resources with separate CloudFormation templates
