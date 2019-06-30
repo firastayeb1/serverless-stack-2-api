@@ -6,7 +6,7 @@ export async function main(event, context) {
     var params = {
       GroupName: 'admin',
       UserPoolId: process.env.CognitoUserPool,
-      Username: event.requestContext.identity.Username
+      Username: event.requestContext.identity.cognitoIdentityId
     };
   
     cognitoidentityserviceprovider.adminAddUserToGroup(params, function(err, data) {
