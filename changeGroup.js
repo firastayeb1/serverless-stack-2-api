@@ -1,8 +1,9 @@
 
 import AWS from "aws-sdk";
-var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
+//var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
 
 export async function main(event, context) {
+    var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
     var params = {
       GroupName: 'admin',
       UserPoolId: 'eu-west-1_lqYtitXfC',
