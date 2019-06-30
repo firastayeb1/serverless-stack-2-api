@@ -56,6 +56,8 @@ Resources:
                   - 'mobileanalytics:PutEvents'
                   - 'cognito-sync:*'
                   - 'cognito-identity:*'
+                  - 'cognito-idp:AdminAddUserToGroup'
+                  - 'cognito-idp:AdminRemoveUserFromGroup'
                 Resource: '*'
               
               # Allow users to invoke our API
