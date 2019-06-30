@@ -5,7 +5,7 @@ var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({api
 export async function main(event, context) {
     var params = {
       GroupName: 'admin',
-      UserPoolId: event.userPoolId,
+      UserPoolId: process.env.userPoolId,
       Username: event.requestContext.identity.cognitoIdentityId
     };
   
