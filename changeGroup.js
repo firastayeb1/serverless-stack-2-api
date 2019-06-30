@@ -4,9 +4,9 @@ var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({api
 
 export async function main(event, context) {
     var params = {
-      GroupName: 'admin',
-      UserPoolId: 'eu-west-1_lqYtitXfC',
-      Username: '9899f6cf-a070-4e15-8878-2026363b3d9c'
+      GroupName: "admin",
+      UserPoolId: "eu-west-1_lqYtitXfC",
+      Username: "9899f6cf-a070-4e15-8878-2026363b3d9c"
     };
   
     cognitoidentityserviceprovider.adminAddUserToGroup(params, function(err, data) {
