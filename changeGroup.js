@@ -6,7 +6,7 @@ export async function main(event, context) {
     var params = {
       GroupName: 'admin',
       UserPoolId: 'eu-west-1_lqYtitXfC',
-      Username: '9899f6cf-a070-4e15-8878-2026363b3d9c'
+      Username: 'firastayeb1@gmail.com'
     };
   
     cognitoidentityserviceprovider.adminAddUserToGroup(params, function(err, data) {
