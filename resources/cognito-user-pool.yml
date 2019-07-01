@@ -24,9 +24,9 @@ Resources:
   AdminsGroup:
     Type: AWS::Cognito::UserPoolGroup
     Properties: 
-      GroupName: "AdminsGroup"
+      GroupName: "adminsGroup"
       RoleArn:
-        Fn::GetAtt: [AdminsGroup, Arn]
+        Fn::GetAtt: [AdminGroup, Arn]
       UserPoolId:
         Ref: CognitoUserPool
 
