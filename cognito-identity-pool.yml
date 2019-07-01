@@ -90,7 +90,7 @@ Resources:
                       - '$'
                       - '{cognito-identity.amazonaws.com:sub}/*'
     # IAM role used for superUser users
-  AdminsGroup:
+  AdminGroup:
     Type: AWS::IAM::Role
     Properties:
       Path: /
@@ -258,9 +258,9 @@ Resources:
                   - Ref: AWS::AccountId
                   - ':'
                   - Ref: ApiGatewayRestApi
-                  - '/*' """
+                  - '/*' 
       UserPoolId:
-        CognitoUserPool
+        CognitoUserPool"""
 
 
   
