@@ -28,7 +28,7 @@ Resources:
 
           
   # IAM role used for authenticated users
-  """CognitoAuthRole:
+  CognitoAuthRole:
     Type: AWS::IAM::Role
     Properties:
       Path: /
@@ -88,9 +88,9 @@ Resources:
                       - Fn::GetAtt: [AttachmentsBucket, Arn]
                       - '/private/'
                       - '$'
-                      - '{cognito-identity.amazonaws.com:sub}/*'"""
+                      - '{cognito-identity.amazonaws.com:sub}/*'
     # IAM role used for superUser users
-  CognitoAuthRole:
+  AdminsGroup:
     Type: AWS::IAM::Role
     Properties:
       Path: /
@@ -235,7 +235,7 @@ Resources:
       Roles:
         - Ref: CognitoIdentityUnauthenticatedRole
 
-  AdminsGroup:
+  """AdminsGroup:
     Type: AWS::IAM::Group
     Properties:
       GroupName: adminsGroup
@@ -258,7 +258,7 @@ Resources:
                   - Ref: AWS::AccountId
                   - ':'
                   - Ref: ApiGatewayRestApi
-                  - '/*' 
+                  - '/*' """
       UserPoolId:
         CognitoUserPool
 

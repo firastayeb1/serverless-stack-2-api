@@ -21,6 +21,15 @@ Resources:
         - ADMIN_NO_SRP_AUTH
       GenerateSecret: false
 
+  AdminsGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties: 
+      GroupName: "AdminsGroup"
+      RoleArn:
+        Fn::GetAtt: [AdminsGroup, Arn]
+      UserPoolId:
+        Ref: CognitoUserPool
+
 # Print out the Id of the User Pool that is created
 Outputs:
   UserPoolId:
