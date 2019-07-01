@@ -167,20 +167,7 @@ Resources:
                       - ':'
                       - Ref: ApiGatewayRestApi
                       - '/*/users/{id}'
-              
-              # Allow superUser to upload attachments to their
-              # folder inside our S3 bucket
-              - Effect: 'Allow'
-                Action:
-                  - 's3:*'
-                Resource:
-                  - Fn::Join:
-                    - ''
-                    -
-                      - Fn::GetAtt: [AttachmentsBucket, Arn]
-                      - '/private/'
-                      - '$'
-                      - '{cognito-identity.amazonaws.com:sub}/*'
+            
 
 
   # IAM role used for authenticated users
