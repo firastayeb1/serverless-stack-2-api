@@ -1,20 +1,25 @@
-
+import { success, failure } from "../libs/response-lib";
 import AWS from "aws-sdk";
-var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
 
 export async function main(event, context) {
+    const data = JSON.parse(event.body);
+    var cognitoISP = new AWS.CognitoIdentityServiceProvider({ apiVersion: '2016-04-18' });
+    
+    const authProvider = event.requestContext.identity.cognitoAuthenticationProvider;
+    const parts = authProvider.split(':');
+    const userPoolIdParts = parts[parts.length - 3].split('/');
+    const userPoolId = userPoolIdParts[userPoolIdParts.length - 1];
+    
     var params = {
-      GroupName: 'admin',
-      UserPoolId: 'eu-west-1_lqYtitXfC',
-      Username: '9899f6cf-a070-4e15-8878-2026363b3d9c'
+        GroupName: data.groupName,
+        UserPoolId: userPoolId,
+        Username: data.username
     };
-  
-    cognitoidentityserviceprovider.adminAddUserToGroup(params, function(err, data) {
-      if (err) console.log("Error");
-      else     console.log("Success");
-    });
-  
-    console.log("Executed.");
-  
-    context.succeed(event);
+
+    try {
+        await cognitoISP.adminAddUserToGroup(params).promise();
+        return success({ status: true });
+    } catch (e) {
+        return failure({ message: e.message });
+    }
 }
